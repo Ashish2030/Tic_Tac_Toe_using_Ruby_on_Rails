@@ -1,92 +1,3 @@
-
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-
-    <%= stylesheet_link_tag "m" %>
-
-
-  <title>Tic Tac Toe Game | CodingNepal</title>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
-</head>
-<main onload="myFunction()">
-  <div>
-    <%= image_tag("map.png", class: "topcorner")%>
-  </div>
-  <nav class="navbar navbar-default navbar-fixed-top">
-    <div class="container">
-
-      <div id="navbar" class="collapse navbar-collapse">
-          <ul class="nav navbar-nav">
-            <% if check %>
-              <li class="right">
-                <%= link_to "Score", "/score/index",:class =>"link" %> &ensp;&ensp;
-              </li>
-              <% else %>
-
-              <%end %>
-
-            <li class="right">
-              <% if session[:user_name] %>
-                <%= link_to "Logout", "/sessions/logout",:class =>"link" %> &ensp;&ensp;
-                <%= link_to "#{session[:user_name]}", "/welcome",:class =>"link" %> &ensp;&ensp;
-              <%else %>
-                <%= link_to "Login", "/",:class =>"link" %> &ensp;
-              <%end %>
-            </li>
-          </ul>
-      </div>
-    </div>
-  </nav>
-</main>
-<body>
-
-<div class="select-box">
-  <header>Tic Tac Toe</header>
-  <div class="content">
-    <div class="title">Select which you want to be?</div>
-    <div class="options">
-      <button class="playerX">Player (X)</button>
-      <button class="playerO">Player (O)</button>
-    </div>
-  </div>
-</div>
-
-<!-- playboard section -->
-<div class="play-board">
-  <div class="details">
-    <div class="players">
-      <span class="Xturn">X's Turn</span>
-      <span class="Oturn">O's Turn</span>
-      <div class="slider"></div>
-    </div>
-  </div>
-  <div class="play-area">
-    <section>
-      <span class="box1"></span>
-      <span class="box2"></span>
-      <span class="box3"></span>
-    </section>
-    <section>
-      <span class="box4"></span>
-      <span class="box5"></span>
-      <span class="box6"></span>
-    </section>
-    <section>
-      <span class="box7"></span>
-      <span class="box8"></span>
-      <span class="box9"></span>
-    </section>
-  </div>
-</div>
-
-<!-- result box -->
-<div class="result-box">
-  <div class="won-text"></div>
-  <div class="btn"><button>Replay</button></div>
-</div>
-<script>
     const selectBox = document.querySelector(".select-box"),
         selectBtnX = selectBox.querySelector(".options .playerX"),
         selectBtnO = selectBox.querySelector(".options .playerO"),
@@ -204,7 +115,7 @@
                 request.send(formData);
 
             }
-            else
+                else
             {
                 formData.append("authenticity_token", "<%=form_authenticity_token %>");
                 formData.append("loss",1);
@@ -236,8 +147,3 @@
     replayBtn.onclick = ()=>{
         window.location.reload(); //reload the current page on replay button click
     }
-</script>
-
-
-</body>
-</html>

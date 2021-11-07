@@ -1,4 +1,4 @@
-class ChangeColumnTypeInQuestions < ActiveRecord::Migration[6.0]
+class ChangeColumnToNewFromTableName < ActiveRecord::Migration[5.2]
   def change
     change_column :details, :wins, :integer, default: 0
     change_column :details, :loose, :integer, default: 0

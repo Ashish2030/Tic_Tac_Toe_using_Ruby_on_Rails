@@ -9,21 +9,21 @@ class User < ApplicationRecord
 
   def password_requirements_are_met
     if password_digest
-    rules = {
-      " must contain at least one lowercase letter"  => /[a-z]+/,
-      " must contain at least one uppercase letter"  => /[A-Z]+/,
-      " must contain at least one digit"             => /\d+/,
-      " must contain at least one special character" => /[^A-Za-z0-9]+/
-    }
+      rules = {
+        " must contain at least one lowercase letter"  => /[a-z]+/,
+        " must contain at least one uppercase letter"  => /[A-Z]+/,
+        " must contain at least one digit"             => /\d+/,
+        " must contain at least one special character" => /[^A-Za-z0-9]+/
+      }
 
-    rules.each do |message, regex|
-      errors.add( :password, message ) unless password.match( regex )
+      rules.each do |message, regex|
+        errors.add( :password, message ) unless password.match( regex )
+      end
     end
-    end
-    end
+  end
 
   validates :username,presence: true, uniqueness: { scope: :username, message: "Username already Taken " }
-   validate :password_requirements_are_met
+  validate :password_requirements_are_met
   has_secure_password
 
 
